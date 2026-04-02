@@ -1,0 +1,41 @@
+# This is a Sample GitHub Actions Workflow you need to add in your project if you want to integrate this PR REview Agent in your project
+# This Example is for plain python app using requirements.txt for build
+name: AI PR Review Agent
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: |
+          poetry install --no-root
+
+      - name: Run migrations
+        run: |
+          poetry run python manage.py migrate --noinput
+
+      - name: Review agent
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: poetry run python agent.py $GITHUB_TOKEN $REPOSITORY $PR_NUMBER $GOOGLE_API_KEY
