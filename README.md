@@ -141,15 +141,18 @@ Embed the agent directly into any repository so it **triggers automatically on e
 
 ### Step 1 — Add the agent to your target repo
 
-Copy `agent.py` into your target repository (root or a `/agents` subfolder).
+Copy `agent.py` into your target repository.
 
-
-### Step 2 — Add a the Packages 
-This can be done either through requirements or Poetry or any dependency manager
-
-checkout the README.md in the respective samples provided for the detailed overview on how to do this
-`poetry-sample\README.md` or `requirements-sample\README.md`
-
+### Step 2 — Choose your dependency manager
+ 
+Two ready-to-use setups are provided — pick one:
+ 
+| Approach | Folder | Guide |
+|---|---|---|
+| pip + requirements.txt | `requirements-sample/` | [README](./requirements-sample/README.md) |
+| Poetry | `poetry-sample/` | [README](./poetry-sample/README.md) |
+ 
+Each folder contains the exact `pr-review.yml` workflow file and step-by-step instructions.
 ### Step 3 — Add GitHub Actions Secrets
 
 Navigate to your GitHub repository:
