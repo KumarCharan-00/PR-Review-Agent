@@ -16,7 +16,7 @@ dotenv.load_dotenv()
 token = os.getenv("GITHUB_TOKEN")
 git = Github(auth=Auth.Token(token)) if token else None
 
-repo_url = os.getenv("GITHUB_REPO")
+repo_url = os.getenv("GITHUB_REPOSITORY")
 repo_name = repo_url.split('/')[-1].replace('.git', '')
 username = repo_url.split('/')[-2]
 full_repo_name = f"{username}/{repo_name}"

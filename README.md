@@ -163,7 +163,7 @@ Settings → Secrets and Variables → Actions → New Repository Secret
 | Secret Name                                         | Value                            |
 |-----------------------------------------------------|----------------------------------|
 | `GITHUB_TOKEN` (This can be ignored no need to add) | Auto-provided by GitHub Actions  | 
-| `GEMINI_API_KEY`                                    | Your Google Gemini API key       |
+| `GEMINI_API_KEY`                                    | Your Google Gemini API key       | 
 
 Note: If you're using any other provided add the respective secret name.
 
@@ -183,7 +183,7 @@ Every time a PR is opened or updated, GitHub Actions triggers the multi-agent wo
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 pr-review-agent/
@@ -198,9 +198,9 @@ pr-review-agent/
 
 ---
 
-## 🔑 Environment Variables Reference
+## Environment Variables Reference
 
-| Variable | Description |
+| Variable  | Description |
 |---|---|---|
 | `GITHUB_TOKEN` | GitHub PAT with `repo` + `pull_requests:write` scope |
 | `GEMINI_API_KEY`  | Google Gemini API key |
@@ -208,14 +208,13 @@ pr-review-agent/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repo
 2. Create a feature branch: `git checkout -b feature/your-feature`
 3. Commit your changes: `git commit -m 'Add your feature'`
 4. Push: `git push origin feature/your-feature`
 5. Open a PR — and let the agent review it 😄
-
 
 ---
 If this project helped or inspired you, drop a star ⭐️ — it helps others to find it!

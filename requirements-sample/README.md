@@ -39,6 +39,15 @@ PyGithub
 python-dotenv
 ```
 
+If you're using any other LLM Agent use the packages associated to them.
+No need to install all of them just install the one which is needed
+
+```txt
+llama-index-llms-ollama 
+llama-index-llms-anthropic
+llama-index-llms-openai
+```
+
 > If your target repo already has a `requirements.txt`, just append these four packages to it.
 
 ---
@@ -60,15 +69,26 @@ Create the `.github/workflows/` folders if they don't exist yet.
 
 ### Step 4 — Add GitHub Actions Secrets
 
+If your using PAT make sure to add this permission:
+```
+GitHub → Settings → Developer Settings → Personal Access Tokens → Edit your token → check the workflow scope → Regenerate.
+```
+
 In your **target repository** on GitHub:
 
 ```
 Settings → Secrets and Variables → Actions → New Repository Secret
 ```
+```
+Settings → Actions → General → Workflow permissions → set to "Read and write permissions"
+```
 
-| Secret Name | Value |
-|---|---|
-| `GEMINI_API_KEY` | Your Google Gemini API key |
+
+| Secret Name (example) | Value                      |
+|-----------------------|----------------------------|
+| `GEMINI_API_KEY`      | Your Google Gemini API key |
+
+Or any other API KEY associated with your LLM Model
 
 > `GITHUB_TOKEN` is **automatically provided** by GitHub Actions — you do not need to add it.
 >
@@ -97,11 +117,11 @@ on:
     types: [opened, synchronize, reopened]
 ```
 
-| Event | When it fires |
-|---|---|
-| `opened` | A new PR is created |
+| Event         | When it fires                            |
+|---------------|------------------------------------------|
+| `opened`      | A new PR is created                      |
 | `synchronize` | A new commit is pushed to an existing PR |
-| `reopened` | A previously closed PR is reopened |
+| `reopened`    | A previously closed PR is reopened       |
 
 The agent only runs on actual code changes — not on label updates, assignments, or review requests.
 
@@ -109,12 +129,14 @@ The agent only runs on actual code changes — not on label updates, assignments
 
 ## Environment Variables Injected by the Workflow
 
-| Variable | Source | Description |
-|---|---|---|
-| `GITHUB_TOKEN` | Auto (GitHub Actions) | Reads PR details and posts the review comment |
-| `GEMINI_API_KEY` | Repository Secret | Your LLM API key |
-| `PR_NUMBER` | Auto (`github.event.pull_request.number`) | The PR number that triggered the workflow |
-| `GITHUB_REPO` | Auto (`github.server_url`/`github.repository`) | Full repo URL passed to `agent.py` |
+| Variable         | Source                                         | Description                                   |
+|------------------|------------------------------------------------|-----------------------------------------------|
+| `GITHUB_TOKEN`   | Auto (GitHub Actions)                          | Reads PR details and posts the review comment |
+| `GEMINI_API_KEY` | Repository Secret                              | Your LLM API key                              |
+| `PR_NUMBER`      | Auto (`github.event.pull_request.number`)      | The PR number that triggered the workflow     |
+
+You Should manage only LLM API Key in secrets PR Number, PAT will be auto inserted.
+GITHUB_REPOSITORY → this is a reserved word in github so it auto refers to current repo with out any changes
 
 ---
 
