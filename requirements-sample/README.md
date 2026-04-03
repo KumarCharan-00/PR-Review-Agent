@@ -8,7 +8,9 @@
 
 ```
 requirements-sample/
-├── pr-review.yml       # GitHub Actions workflow — copy this into your repo
+└── .github/            # GitHub Actions workflow — copy this folder directly into your repo
+    └── workflows/
+        └── pr-review.yml    
 └── README.md           # This guide
 ```
 
