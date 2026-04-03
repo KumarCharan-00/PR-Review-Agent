@@ -200,11 +200,11 @@ pr-review-agent/
 
 ## Environment Variables Reference
 
-| Variable  | Description |
-|---|---|---|
-| `GITHUB_TOKEN` | GitHub PAT with `repo` + `pull_requests:write` scope |
-| `GEMINI_API_KEY`  | Google Gemini API key |
-| `PR_NUMBER` | PR number to review (auto-injected by GitHub Actions) |
+| Variable         | Description                                           |
+|------------------|-------------------------------------------------------|
+| `GITHUB_TOKEN`   | GitHub PAT with `repo` + `pull_requests:write` scope  |
+| `GEMINI_API_KEY` | Google Gemini API key                                 |
+| `PR_NUMBER`      | PR number to review (auto-injected by GitHub Actions) |
 
 ---
 
